@@ -1,8 +1,11 @@
-import type { RedisClientOptions } from 'redis';
-import type { Redis } from 'ioredis';
+// import type { RedisClientOptions } from 'redis';
+// import type { Redis } from 'ioredis';
 // import type { Queue as BullQueue } from 'bull';
 // import type BeeQueue from 'bee-queue';
 // import type { Queue as BullMQQueue, FlowProducer } from 'bullmq';
+
+type Redis = any;
+type RedisClientOptions = any;
 
 type BeeQueue = any;
 type BullQueue = any;
