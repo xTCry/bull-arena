@@ -1,7 +1,7 @@
 {
-  "name": "bull-arena",
+  "name": "@xtcry/bull-arena",
   "version": "3.29.3",
-  "description": "An interactive UI dashboard for Bee Queue",
+  "description": "An interactive UI dashboard for Bee/Bull Queue",
   "scripts": {
     "format": "prettier --write \"**/*.{js,ts}\"",
     "ci": "npm run build && npm run lint && if [ -z \"$CI\" ]; then npm run ci:commitlint; fi",
@@ -13,8 +13,14 @@
     "prepare": "husky install",
     "pretty:quick": "pretty-quick --ignore-path ./.prettierignore --staged"
   },
-  "repository": "https://github.com/bee-queue/arena.git",
+  "repository": "https://github.com/xTCry/bull-arena.git",
   "author": "Mixmax <hello@mixmax.com>",
+  "contributors": [
+    {
+      "name": "xTCry [Vladislav Kh]",
+      "url": "https://github.com/xTCry/"
+    }
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
