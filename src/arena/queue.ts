@@ -100,6 +100,13 @@ export default class Queues {
       ...(prefix && { prefix }),
     };
 
+    if (!Object.values(options.redis).every(Boolean)) {
+      if (!this._config.defaultRedis) {
+        throw new Error('must specify a default or per-queue configuration');
+      }
+      options.redis = this._config.defaultRedis;
+    }
+
     let queue: IQueue;
     if (isBee) {
       _.extend(options, {

@@ -216,6 +216,12 @@ import Bull from 'bull';
 
 const arenaConfig = Arena({
   Bull,
+  // Redis configuration for each queue.
+  // defaultRedis:  {
+  //   port: /* Your redis port */,
+  //   host: /* Your redis host domain*/,
+  //   password: /* Your redis password */,
+  // },
   queues: [
     {
       type: 'bull',

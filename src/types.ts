@@ -22,6 +22,7 @@ export type IArenaConfig = {
 
   queues: QueueConfigType[];
   flows?: FlowConfigType[];
+  defaultRedis?: ConnectionOptions;
 
   Bull?: QueueCtr;
   Bee?: QueueCtr;
@@ -63,7 +64,7 @@ export type QueueConfigType = {
   type?: 'bee' | 'bull' | 'bullmq';
   prefix?: string;
   createClient?: (options: RedisClientOptions) => Redis;
-} & ConnectionOptions;
+} & Partial<ConnectionOptions>;
 
 export type FlowConfigType = {
   name: string;
@@ -71,7 +72,7 @@ export type FlowConfigType = {
   type?: 'bullmq';
   prefix?: string;
   createClient?: (options: RedisClientOptions) => Redis;
-} & ConnectionOptions;
+} & Partial<ConnectionOptions>;
 
 export type IFlow = {
   IS_BULLMQ?: boolean;

@@ -88,6 +88,13 @@ export default class Flows {
       ...(prefix && { prefix }),
     };
 
+    if (!Object.values(options.redis).every(Boolean)) {
+      if (!this._config.defaultRedis) {
+        throw new Error('must specify a default or per-queue configuration');
+      }
+      options.redis = this._config.defaultRedis;
+    }
+
     let flow: IFlow;
     if (isBullMQ) {
       if (flowConfig.createClient)
