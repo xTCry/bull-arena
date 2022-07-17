@@ -1,12 +1,13 @@
 {
   "name": "@xtcry/bull-arena",
-  "version": "3.29.3",
+  "version": "3.31.0-1",
   "description": "An interactive UI dashboard for Bee/Bull Queue",
   "scripts": {
     "format": "prettier --write \"**/*.{js,ts}\"",
     "ci": "npm run build && npm run lint && if [ -z \"$CI\" ]; then npm run ci:commitlint; fi",
     "ci:commitlint": "commitlint --from \"origin/${GITHUB_BASE_REF:-master}\"",
     "dry:run": "npm publish --dry-run",
+    "prepack": "npm run build",
     "build": "rimraf dist && tsc",
     "lint": "prettier -c .",
     "lint:staged": "lint-staged",

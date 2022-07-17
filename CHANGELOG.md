@@ -1,3 +1,25 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [3.31.0-1](https://github.com/xTCry/bull-arena/compare/v3.29.3...v3.31.0-1) (2022-07-17)
+
+### Features
+
+- **arena:** added `defaultRedis` option ([0daf0d3](https://github.com/xTCry/bull-arena/commit/0daf0d31fc0039d3e3cb79b6a3db6562dcfdcf47))
+- **types:** add typescript type generation as part of build process. Add named export run that exports middleware/queues in arena. ([403d1de](https://github.com/xTCry/bull-arena/commit/403d1de5af4c3d573a89ad87ccc0f92d3380e2c8))
+- **typescript:** rewrite to TypeScript ([71b57b1](https://github.com/xTCry/bull-arena/commit/71b57b172feece11d642a463ff411c4c91610013))
+
+### Bug Fixes
+
+- BullMQ's delayed execution ([a472021](https://github.com/xTCry/bull-arena/commit/a472021742d8732c04b0c87ed10ba2ff24f6778b))
+- **types:** use without deps ([fd22893](https://github.com/xTCry/bull-arena/commit/fd2289361a9affc8556f94db7196a98f6f11c5df))
+
+### Others
+
+- branch to new module ([5c33ea8](https://github.com/xTCry/bull-arena/commit/5c33ea88d681d395c78ce00c7056c59a9d6c408b))
+- **prettier:** bracket spacing ([276d9f0](https://github.com/xTCry/bull-arena/commit/276d9f068f17d782cfd8fd49868d1c8410aff8b3))
+
 ### [3.29.3](https://github.com/bee-queue/arena/compare/v3.29.2...v3.29.3) (2021-09-08)
 
 ### Bug Fixes
