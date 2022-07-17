@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import {IArenaConfig, IQueue} from '../types';
+import { IArenaConfig, IQueue } from '../types';
 
 export default class Queues {
   public _queues: Record<string, Record<string, IQueue>> = {};
@@ -24,7 +24,7 @@ export default class Queues {
   }
 
   public setConfig(config: IArenaConfig) {
-    this._config = {...config, queues: config.queues.slice()};
+    this._config = { ...config, queues: config.queues.slice() };
 
     if (!this._config.queues.length) {
       throw new Error('unsupported configuration: no queues configured');
@@ -85,11 +85,11 @@ export default class Queues {
 
     const redisHost: any = {
       host,
-      ...(password && {password}),
-      ...(username && {username}),
-      ...(port && {port}),
-      ...(db && {db}),
-      ...(tls && {tls}),
+      ...(password && { password }),
+      ...(username && { username }),
+      ...(port && { port }),
+      ...(db && { db }),
+      ...(tls && { tls }),
     };
 
     const isBee = type === 'bee';
@@ -97,7 +97,7 @@ export default class Queues {
 
     const options: any = {
       redis: redis || url || redisHost,
-      ...(prefix && {prefix}),
+      ...(prefix && { prefix }),
     };
 
     let queue: IQueue;
@@ -109,15 +109,15 @@ export default class Queues {
         storeJobs: false,
       });
 
-      const {Bee} = this._config;
+      const { Bee } = this._config;
       queue = new Bee!(name, options);
       queue.IS_BEE = true;
     } else if (isBullMQ) {
       if (queueConfig.createClient)
         options.createClient = queueConfig.createClient;
 
-      const {BullMQ} = this._config;
-      const {redis, ...rest} = options;
+      const { BullMQ } = this._config;
+      const { redis, ...rest } = options;
       queue = new BullMQ!(name, {
         connection: redis,
         ...rest,
@@ -129,7 +129,7 @@ export default class Queues {
 
       if (typeof options.redis === 'string') delete options.redis;
 
-      const {Bull} = this._config;
+      const { Bull } = this._config;
       if (url) {
         queue = new Bull!(name, url, options);
       } else {

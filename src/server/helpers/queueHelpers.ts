@@ -64,7 +64,7 @@ const _usefulMetrics = [
 ];
 
 export const getStats = async (queue: any) => {
-  const {client} = await queue;
+  const { client } = await queue;
   const info = await client.info();
 
   const stats = _.pickBy(parseRedisServerInfo(info), (value, key) =>

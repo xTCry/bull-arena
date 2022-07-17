@@ -1,5 +1,5 @@
 const Arena = require('../');
-const {Queue, QueueScheduler, Worker, FlowProducer} = require('bullmq');
+const { Queue, QueueScheduler, Worker, FlowProducer } = require('bullmq');
 const RedisServer = require('redis-server');
 
 // Select ports that are unlikely to be used by other services a developer might be running locally.
@@ -15,19 +15,19 @@ async function main() {
   const parentQueueName = 'name_of_my_parent_queue';
 
   const queueScheduler = new QueueScheduler(queueName, {
-    connection: {port: REDIS_SERVER_PORT},
+    connection: { port: REDIS_SERVER_PORT },
   });
   await queueScheduler.waitUntilReady();
 
   const queue = new Queue(queueName, {
-    connection: {port: REDIS_SERVER_PORT},
+    connection: { port: REDIS_SERVER_PORT },
   });
   new Queue(parentQueueName, {
-    connection: {port: REDIS_SERVER_PORT},
+    connection: { port: REDIS_SERVER_PORT },
   });
 
   const flow = new FlowProducer({
-    connection: {port: REDIS_SERVER_PORT},
+    connection: { port: REDIS_SERVER_PORT },
   });
 
   new Worker(
@@ -44,7 +44,7 @@ async function main() {
       }
     },
     {
-      connection: {port: REDIS_SERVER_PORT},
+      connection: { port: REDIS_SERVER_PORT },
     }
   );
 
@@ -60,13 +60,13 @@ async function main() {
       }
     },
     {
-      connection: {port: REDIS_SERVER_PORT},
+      connection: { port: REDIS_SERVER_PORT },
     }
   );
 
   const children = Array.from(Array(65).keys()).map((index) => ({
     name: 'child',
-    data: {idx: index, foo: 'bar'},
+    data: { idx: index, foo: 'bar' },
     queueName,
   }));
   await flow.add({
@@ -77,7 +77,7 @@ async function main() {
   });
 
   // adding delayed jobs
-  const delayedJob = await queue.add('delayed', {}, {delay: 60 * 1000});
+  const delayedJob = await queue.add('delayed', {}, { delay: 60 * 1000 });
   delayedJob.log('Log message');
 
   Arena(

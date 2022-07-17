@@ -1,5 +1,5 @@
-import type {RedisClientOptions} from 'redis';
-import type {Redis} from 'ioredis';
+import type { RedisClientOptions } from 'redis';
+import type { Redis } from 'ioredis';
 // import type { Queue as BullQueue } from 'bull';
 // import type BeeQueue from 'bee-queue';
 // import type { Queue as BullMQQueue, FlowProducer } from 'bullmq';
@@ -24,7 +24,7 @@ export type IArenaConfig = {
   Bee?: QueueCtr;
   BullMQ?: QueueCtr;
   FlowBullMQ?: FlowCtr;
-} & ({Bull: QueueCtr} | {Bee: QueueCtr} | {BullMQ: QueueCtr});
+} & ({ Bull: QueueCtr } | { Bee: QueueCtr } | { BullMQ: QueueCtr });
 
 export interface IListenOptions {
   port?: number;
@@ -50,9 +50,9 @@ export type IQueue = {
 } & Queues;
 
 type Queues =
-  | (BeeQueue & {IS_BEE: true})
-  | (BullQueue & {IS_BULL: true})
-  | (BullMQQueue & {IS_BULLMQ: true});
+  | (BeeQueue & { IS_BEE: true })
+  | (BullQueue & { IS_BULL: true })
+  | (BullMQQueue & { IS_BULLMQ: true });
 
 export type QueueConfigType = {
   name: string;
@@ -74,7 +74,7 @@ export type IFlow = {
   IS_BULLMQ?: boolean;
 } & Flows;
 
-type Flows = FlowProducer & {IS_BULLMQ: true};
+type Flows = FlowProducer & { IS_BULLMQ: true };
 
 type ConnectionOptions =
   | RedisPortHostConnectionOptions

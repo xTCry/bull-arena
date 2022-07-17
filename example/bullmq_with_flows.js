@@ -1,5 +1,5 @@
 const Arena = require('../');
-const {Queue, Worker, FlowProducer} = require('bullmq');
+const { Queue, Worker, FlowProducer } = require('bullmq');
 const RedisServer = require('redis-server');
 
 // Select ports that are unlikely to be used by other services a developer might be running locally.
@@ -15,14 +15,14 @@ async function main() {
   const parentQueueName = 'name_of_my_parent_queue';
 
   const queue = new Queue(queueName, {
-    connection: {port: REDIS_SERVER_PORT},
+    connection: { port: REDIS_SERVER_PORT },
   });
   new Queue(parentQueueName, {
-    connection: {port: REDIS_SERVER_PORT},
+    connection: { port: REDIS_SERVER_PORT },
   });
 
   const flow = new FlowProducer({
-    connection: {port: REDIS_SERVER_PORT},
+    connection: { port: REDIS_SERVER_PORT },
   });
 
   new Worker(
@@ -37,7 +37,7 @@ async function main() {
       }
     },
     {
-      connection: {port: REDIS_SERVER_PORT},
+      connection: { port: REDIS_SERVER_PORT },
     }
   );
 
@@ -53,7 +53,7 @@ async function main() {
       }
     },
     {
-      connection: {port: REDIS_SERVER_PORT},
+      connection: { port: REDIS_SERVER_PORT },
     }
   );
 
@@ -62,9 +62,9 @@ async function main() {
     queueName: parentQueueName,
     data: {},
     children: [
-      {name: 'child', data: {idx: 0, foo: 'bar'}, queueName},
-      {name: 'child', data: {idx: 1, foo: 'baz'}, queueName},
-      {name: 'child', data: {idx: 2, foo: 'qux'}, queueName},
+      { name: 'child', data: { idx: 0, foo: 'bar' }, queueName },
+      { name: 'child', data: { idx: 1, foo: 'baz' }, queueName },
+      { name: 'child', data: { idx: 2, foo: 'qux' }, queueName },
     ],
   });
 

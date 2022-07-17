@@ -7,17 +7,17 @@ type FlowType = {
 };
 
 export const processFlow = (flow: FlowType): FlowType => {
-  const {job, children} = flow;
-  const {queueName} = job;
+  const { job, children } = flow;
+  const { queueName } = job;
 
   if (children && children.length > 0) {
     return {
-      job: {...job, queueName},
+      job: { ...job, queueName },
       children: children.map((child) => processFlow(child)),
     };
   } else {
     return {
-      job: {...job, queueName},
+      job: { ...job, queueName },
     };
   }
 };

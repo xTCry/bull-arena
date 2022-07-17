@@ -6,7 +6,7 @@ $(document).ready(() => {
   }
 
   function formatToTreeView(flow, flowHost) {
-    const {job, children} = flow;
+    const { job, children } = flow;
     const text = `${job.name} <a href="${basePath}/${encodeURIComponent(
       flowHost
     )}/${encodeURIComponent(job.queueName)}/${
@@ -220,11 +220,11 @@ $(document).ready(() => {
 
     const job = localStorage.getItem('arena:savedJob');
     if (job) {
-      const {name, data} = JSON.parse(job);
+      const { name, data } = JSON.parse(job);
       window.jsonEditor.set(data);
       $('input.js-add-job-name').val(name);
     } else {
-      window.jsonEditor.set({id: ''});
+      window.jsonEditor.set({ id: '' });
     }
   });
 
@@ -237,7 +237,7 @@ $(document).ready(() => {
 
     const flow = localStorage.getItem('arena:savedFlow');
     if (flow) {
-      const {data} = JSON.parse(flow);
+      const { data } = JSON.parse(flow);
       window.jsonEditor.set(data);
     } else {
       window.jsonEditor.set({});
@@ -255,9 +255,9 @@ $(document).ready(() => {
   $('.js-add-job').on('click', function () {
     const name = $('input.js-add-job-name').val() || null;
     const data = window.jsonEditor.get();
-    const job = JSON.stringify({name, data});
+    const job = JSON.stringify({ name, data });
     localStorage.setItem('arena:savedJob', job);
-    const {queueHost, queueName} = window.arenaInitialPayload;
+    const { queueHost, queueName } = window.arenaInitialPayload;
     $.ajax({
       url: `${basePath}/api/queue/${encodeURIComponent(
         queueHost
@@ -278,9 +278,9 @@ $(document).ready(() => {
 
   $('.js-add-flow').on('click', function () {
     const data = window.jsonEditor.get();
-    const flow = JSON.stringify({data});
+    const flow = JSON.stringify({ data });
     localStorage.setItem('arena:savedFlow', flow);
-    const {flowHost, connectionName} = window.arenaInitialPayload;
+    const { flowHost, connectionName } = window.arenaInitialPayload;
     $.ajax({
       url: `${basePath}/api/flow/${encodeURIComponent(
         flowHost
@@ -293,7 +293,7 @@ $(document).ready(() => {
         const flowTree = formatToTreeView(res, flowHost);
         alert('Flow successfully added!');
         localStorage.removeItem('arena:savedFlow');
-        $('#tree').treeview({data: [flowTree], enableLinks: true});
+        $('#tree').treeview({ data: [flowTree], enableLinks: true });
         $('.js-tree').toggleClass('hide', false);
       })
       .fail((jqXHR) => {
@@ -309,7 +309,7 @@ $(document).ready(() => {
     const depth = $('#depth-input-search').val();
     const maxChildren = $('#max-children-input-search').val();
 
-    const {flowHost, connectionName} = window.arenaInitialPayload;
+    const { flowHost, connectionName } = window.arenaInitialPayload;
 
     $.ajax({
       url: `${basePath}/api/flow/${encodeURIComponent(
@@ -323,7 +323,7 @@ $(document).ready(() => {
       .done((res) => {
         const flowTree = formatToTreeView(res, flowHost);
         alert('Flow info successfully fetched!');
-        $('#tree').treeview({data: [flowTree], enableLinks: true});
+        $('#tree').treeview({ data: [flowTree], enableLinks: true });
         $('.js-tree').toggleClass('hide', false);
       })
       .fail((jqXHR) => {

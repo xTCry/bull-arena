@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 
 import queueList from './queueList';
 import queueDetails from './queueDetails';

@@ -1,4 +1,4 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import * as _ from 'lodash';
 
 export enum ActionType {
@@ -16,12 +16,12 @@ const bulkAction = (action: ActionType) =>
       });
     }
 
-    const {queueName, queueHost} = req.params;
-    const {Queues} = req.app.locals;
+    const { queueName, queueHost } = req.params;
+    const { Queues } = req.app.locals;
     const queue = await Queues.get(queueName, queueHost);
-    if (!queue) return res.status(404).send({error: 'queue not found'});
+    if (!queue) return res.status(404).send({ error: 'queue not found' });
 
-    const {jobs, queueState} = req.body as {
+    const { jobs, queueState } = req.body as {
       queueState: string;
       jobs: string[];
     };

@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 
 import jobAdd from './jobAdd';
 import flowAdd from './flowAdd';

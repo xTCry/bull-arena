@@ -1,13 +1,13 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import * as _ from 'lodash';
 import * as JobHelpers from '../../helpers/jobHelpers';
 
 export default async function handler(req: Request, res: Response) {
-  const {queueName, queueHost, id} = req.params;
-  const {json} = req.query;
+  const { queueName, queueHost, id } = req.params;
+  const { json } = req.query;
   const basePath = req.baseUrl;
 
-  const {Queues, Flows} = req.app.locals;
+  const { Queues, Flows } = req.app.locals;
   const queue = await Queues.get(queueName, queueHost);
   if (!queue)
     return res.status(404).render('dashboard/queueNotFound', {

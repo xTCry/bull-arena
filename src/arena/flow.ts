@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import {IArenaConfig, IFlow} from '../types';
+import { IArenaConfig, IFlow } from '../types';
 
 /*
   This class will be allowed only for BullMQ
@@ -31,7 +31,7 @@ export default class Flows {
   }
 
   public setConfig(config: IArenaConfig) {
-    this._config = {...config, flows: config.flows && config.flows.slice()};
+    this._config = { ...config, flows: config.flows && config.flows.slice() };
 
     if (this.hasFlows() && !this._checkConstructors()) {
       throw new TypeError(
@@ -74,18 +74,18 @@ export default class Flows {
 
     const redisHost: any = {
       host,
-      ...(password && {password}),
-      ...(username && {username}),
-      ...(port && {port}),
-      ...(db && {db}),
-      ...(tls && {tls}),
+      ...(password && { password }),
+      ...(username && { username }),
+      ...(port && { port }),
+      ...(db && { db }),
+      ...(tls && { tls }),
     };
 
     const isBullMQ = type === 'bullmq';
 
     const options: any = {
       redis: redis || url || redisHost,
-      ...(prefix && {prefix}),
+      ...(prefix && { prefix }),
     };
 
     let flow: IFlow;
@@ -93,8 +93,8 @@ export default class Flows {
       if (flowConfig.createClient)
         options.createClient = flowConfig.createClient;
 
-      const {FlowBullMQ} = this._config;
-      const {redis, ...rest} = options;
+      const { FlowBullMQ } = this._config;
+      const { redis, ...rest } = options;
       flow = new FlowBullMQ!({
         connection: redis,
         ...rest,

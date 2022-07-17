@@ -35,7 +35,7 @@ async function main() {
   await queue.add({});
 
   // adding delayed jobs
-  const delayedJob = await queue.add({}, {delay: 60 * 1000});
+  const delayedJob = await queue.add({}, { delay: 60 * 1000 });
   delayedJob.log('Log message');
 
   const app = Arena(

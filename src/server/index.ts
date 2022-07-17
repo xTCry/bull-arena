@@ -6,7 +6,7 @@ import * as exphbs from 'express-handlebars';
 import Queues from '../arena/queue';
 import Flows from '../arena/flow';
 import registerHelpers from './helpers/handlebars';
-import {IArenaConfig} from '../types';
+import { IArenaConfig } from '../types';
 
 export default (config: IArenaConfig) => {
   const hbs = exphbs.create({
@@ -20,7 +20,7 @@ export default (config: IArenaConfig) => {
 
   const queues = new Queues(config);
   const flows = new Flows(config);
-  registerHelpers(handlebars, {queues});
+  registerHelpers(handlebars, { queues });
 
   app.locals.Queues = queues;
   app.locals.Flows = flows;
@@ -37,5 +37,5 @@ export default (config: IArenaConfig) => {
 
   app.use(bodyParser.json());
 
-  return {app, queues};
+  return { app, queues };
 };

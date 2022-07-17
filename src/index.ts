@@ -2,11 +2,11 @@ import * as path from 'path';
 import * as express from 'express';
 
 import Arena from './server';
-import {IArenaConfig, IListenOptions} from './types';
+import { IArenaConfig, IListenOptions } from './types';
 import routes from './server/controllers/routes';
 
 export function run(config: IArenaConfig, listenOptions: IListenOptions = {}) {
-  const {app, queues} = Arena(config);
+  const { app, queues } = Arena(config);
 
   queues.useCdn = listenOptions.useCdn ?? true;
 
@@ -30,7 +30,7 @@ export function run(config: IArenaConfig, listenOptions: IListenOptions = {}) {
     });
   }
 
-  return {app, queues};
+  return { app, queues };
 }
 
 export default (config: IArenaConfig, listenOpts: IListenOptions = {}) =>

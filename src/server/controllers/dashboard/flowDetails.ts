@@ -1,9 +1,9 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import * as QueueHelpers from '../../helpers/queueHelpers';
 
 export default async function handler(req: Request, res: Response) {
-  const {connectionName, flowHost} = req.params;
-  const {Flows} = req.app.locals;
+  const { connectionName, flowHost } = req.params;
+  const { Flows } = req.app.locals;
   const flow = await Flows.get(connectionName, flowHost);
   const basePath = req.baseUrl;
   if (!flow)

@@ -1,7 +1,7 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import * as _ from 'lodash';
 
-import {IQueue} from '../../../types';
+import { IQueue } from '../../../types';
 import {
   BEE_STATES,
   BULL_STATES,
@@ -45,17 +45,19 @@ export default async function handler(req: Request, res: Response) {
  * @prop {Object} res express response object
  */
 async function _json(req: Request, res: Response) {
-  const {queueName, queueHost, state} = req.params;
-  const {Queues} = req.app.locals;
+  const { queueName, queueHost, state } = req.params;
+  const { Queues } = req.app.locals;
   const queue: IQueue = await Queues.get(queueName, queueHost);
-  if (!queue) return res.status(404).json({message: 'Queue not found'});
+  if (!queue) return res.status(404).json({ message: 'Queue not found' });
 
   if (!isValidState(state, queue))
-    return res.status(400).json({message: `Invalid state requested: ${state}`});
+    return res
+      .status(400)
+      .json({ message: `Invalid state requested: ${state}` });
 
   let jobs;
   if (queue.IS_BEE) {
-    jobs = await queue.getJobs(state, {size: 1000});
+    jobs = await queue.getJobs(state, { size: 1000 });
     jobs = jobs.map((j: any) =>
       _.pick(j, 'id', 'progress', 'data', 'options', 'status')
     );
@@ -80,8 +82,8 @@ async function _json(req: Request, res: Response) {
  * @prop {Object} res express response object
  */
 async function _html(req: Request, res: Response) {
-  const {queueName, queueHost, state} = req.params;
-  const {Queues, Flows} = req.app.locals;
+  const { queueName, queueHost, state } = req.params;
+  const { Queues, Flows } = req.app.locals;
   const queue = await Queues.get(queueName, queueHost);
   const basePath = req.baseUrl;
   if (!queue)
@@ -92,7 +94,9 @@ async function _html(req: Request, res: Response) {
     });
 
   if (!isValidState(state, queue))
-    return res.status(400).json({message: `Invalid state requested: ${state}`});
+    return res
+      .status(400)
+      .json({ message: `Invalid state requested: ${state}` });
 
   let jobCounts: Record<string, number>;
   if (queue.IS_BEE) {

@@ -57,7 +57,7 @@ const helpers = {
     return content ? content.join('\n') : null;
   },
 
-  contentFor(name: string, options: {fn: Function}) {
+  contentFor(name: string, options: { fn: Function }) {
     // @ts-ignore
     const blocks = this._blocks || (this._blocks = {});
     const block = blocks[name] || (blocks[name] = []);
@@ -65,7 +65,7 @@ const helpers = {
   },
 
   hashIdAttr(obj: any) {
-    const {id} = obj;
+    const { id } = obj;
     if (typeof id === 'string') {
       return crypto.createHash('sha256').update(id).digest('hex');
     }
@@ -145,12 +145,15 @@ const helpers = {
     return moment(date).format(format);
   },
 
-  eq(a: any, b: any, options: {fn: Function; inverse: Function}) {
+  eq(a: any, b: any, options: { fn: Function; inverse: Function }) {
     return a === b ? options.fn(this) : options.inverse(this);
   },
 };
 
-export default function registerHelpers(hbs: any, {queues}: {queues: Queues}) {
+export default function registerHelpers(
+  hbs: any,
+  { queues }: { queues: Queues }
+) {
   _.each(helpers, (fn: any, helper: any) => {
     hbs.registerHelper(helper, fn);
   });
